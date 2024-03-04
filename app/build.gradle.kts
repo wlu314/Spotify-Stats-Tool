@@ -85,4 +85,7 @@ dependencies {
     //For SPOTIFY API
     implementation(files("libs/spotify-app-remote-release-0.8.0.aar"))
     implementation("com.google.code.gson:gson:2.6.1")
+    implementation ("com.spotify.android:auth:2.1.1")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+
 }
