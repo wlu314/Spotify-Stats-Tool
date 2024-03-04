@@ -26,7 +26,8 @@ public class splash_page extends AppCompatActivity {
         // Check for stored credentials or login token
         // This can be from SharedPreferences, a database, or some other storage mechanism
         // Return true if credentials exist, false otherwise
-        return false; // Placeholder return
+        return true; // Placeholder return
+        //just changed to true to check the main **Chungman Kim
     }
     private void navigateToMainMenu() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -38,7 +39,7 @@ public class splash_page extends AppCompatActivity {
 
     private void navigateToSignupLogin() {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = new Intent(this, spotifyapi.class);
+            Intent intent = new Intent(this, SpotifyApi.class);
             startActivity(intent);
             finish();
         }, 2000); // Delay for 2 seconds (2000 milliseconds)

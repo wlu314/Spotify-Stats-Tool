@@ -37,9 +37,11 @@ android {
         viewBinding = true
         compose = true
     }
+    /**
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    **/
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -79,5 +81,11 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    //For SPOTIFY API
+    implementation(files("libs/spotify-app-remote-release-0.8.0.aar"))
+    implementation("com.google.code.gson:gson:2.6.1")
+    implementation ("com.spotify.android:auth:2.1.1")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
 
 }

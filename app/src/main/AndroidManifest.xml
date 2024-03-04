@@ -22,16 +22,14 @@
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".spotifyapi"
+            android:name=".SpotifyApi"
             android:exported="false" />
         <activity android:name=".CallbackActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="YOUR_APP_SCHEME"
                     android:host="callback" />
             </intent-filter>
