@@ -73,8 +73,8 @@ public class SpotifyAPIConnection extends AppCompatActivity {
                 // Most likely auth flow was cancelled
                 default:
                     //Send back to the Spotify Connection screen
-                    Intent backtToConnection = new Intent(this, SpotifyAPIConnection.class);
-                    startActivity(backtToConnection);
+                    Intent backToConnection = new Intent(this, SpotifyAPIConnection.class);
+                    startActivity(backToConnection);
                     finish();
             }
         }
@@ -98,6 +98,7 @@ public class SpotifyAPIConnection extends AppCompatActivity {
                     String responseData = response.body().string();
                     // TODO parse the data and store it in SQLite
                     // TODO call a method to store the parsed data in SQLite
+                    System.out.println(responseData);
                 } else {
                     try {
                         throw new Exception("The user profile cannot be displayed due to an error.");

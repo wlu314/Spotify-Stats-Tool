@@ -39,8 +39,9 @@ repositories {
 
 dependencies {
 
-    implementation("com.spotify.android:auth:2.1.1")
-    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.spotify.android:auth:2.1.1") // Spotify API
+    implementation("com.squareup.okhttp3:okhttp:4.9.3") // HTTP Authentication
+    implementation("androidx.cardview:cardview:1.0.0") // Card-Based Layout
 
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
