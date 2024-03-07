@@ -7,41 +7,35 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class SplashPage extends AppCompatActivity {
+    private static final int SPLASH_DELAY = 2000; // 2 seconds
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_page);
-        if (userIsLoggedIn()) {
-            // User is logged in, navigate to Main Menu
-            navigateToMainMenu();
-        } else {
-            // No user logged in, navigate to Signup/Login Page
-            navigateToSignupLogin();
+
+        mAuth = FirebaseAuth.getInstance();
+
+        // Delay the redirection to the login page
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                redirectToLoginPage();
+            }
+        }, SPLASH_DELAY);
+    }
+
+    private void redirectToLoginPage() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish(); // Optional: finish the splash activity to prevent returning to it with back button
         }
-
-    }
-    private boolean userIsLoggedIn() {
-        // Check for stored credentials or login token
-        // This can be from SharedPreferences, a database, or some other storage mechanism
-        // Return true if credentials exist, false otherwise
-        return false; // Placeholder return
-    }
-    private void navigateToMainMenu() {
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = new Intent(this, Statistics.class);
-            startActivity(intent);
-            finish();
-        }, 2000); // Delay for 2 seconds (2000 milliseconds)
-    }
-
-    private void navigateToSignupLogin() {
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = new Intent(this, SpotifyAPIConnection.class);
-            startActivity(intent);
-            finish();
-        }, 2000); // Delay for 2 seconds (2000 milliseconds)
     }
 
 }

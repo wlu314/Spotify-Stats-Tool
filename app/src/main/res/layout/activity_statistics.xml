@@ -39,7 +39,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:src="@drawable/account_white"
+            android:src="@drawable/account_white_24dp"
             android:background="@color/background_color"/>
     </LinearLayout>
     <LinearLayout
@@ -210,40 +210,43 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="138dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
+            android:backgroundTint="@color/card_color"
             app:cardCornerRadius="25dp"
-            app:cardElevation="0dp"
-            android:backgroundTint="@color/card_color">
+            app:cardElevation="0dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Top Song"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginStart="15dp"/>
+                android:text="Top Song"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="215dp"
+                android:layout_marginTop="15dp"
                 android:text="Description"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textSize="18dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="215dp"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="215dp"
+                android:layout_marginTop="39dp"
+                android:paddingEnd="10dp"
                 android:text="Good 4 U has been described as an upbeat song blending rock, pop, punk, and alternative styles."
                 android:textColor="@color/text_color"
-                android:textSize="13dp"
-                android:paddingEnd="10dp"
-                android:layout_marginTop="39dp"
-                android:layout_marginStart="215dp"/>
+                android:textSize="13dp" />
 
             <ImageView
                 android:id="@+id/sampleImage"
@@ -252,44 +255,48 @@
                 android:layout_marginStart="22dp"
                 android:layout_marginTop="46dp"
                 android:src="@drawable/sample_artist" />
+
             <TextView
                 android:id="@+id/TopSongTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="46dp"
                 android:text="Good 4 U"
                 android:textColor="@color/white"
-                android:textSize="15dp"
-                android:layout_marginTop="46dp"
-                android:layout_marginStart="98dp"/>
+                android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/TopSongAlbum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="63dp"
                 android:text="Sour"
                 android:textColor="@color/text_color"
-                android:textSize="12dp"
-                android:layout_marginTop="63dp"
-                android:layout_marginStart="98dp"/>
+                android:textSize="12dp" />
+
             <TextView
                 android:id="@+id/TopSongArtist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="78dp"
                 android:text="by Olivia Rodrigo"
                 android:textColor="@color/text_color"
-                android:textStyle="italic"
                 android:textSize="10dp"
-                android:layout_marginTop="78dp"
-                android:layout_marginStart="98dp"/>
+                android:textStyle="italic" />
+
             <TextView
                 android:id="@+id/TopSongSpotify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="95dp"
                 android:text="Play on Spotify Now!"
                 android:textColor="@color/text_color"
-                android:textStyle="italic"
                 android:textSize="8dp"
-                android:layout_marginTop="95dp"
-                android:layout_marginStart="98dp"/>
+                android:textStyle="italic" />
 
 
         </androidx.cardview.widget.CardView>
@@ -305,14 +312,14 @@
         android:rowCount="1">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
-            android:backgroundTint="@color/card_color">
+            android:backgroundTint="@color/card_color"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -322,74 +329,107 @@
                 android:textSize="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="15dp"/>
-            <TextView
-                android:id="@+id/recommedationtext1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Olivia Rodrigo"
-                android:textSize="10dp"
-                android:textColor="@color/white"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="108dp"/>
-            <ImageView
-                android:id="@+id/recommendation1"
-                android:layout_width="68dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/sample_artist"/>
-            <TextView
-                android:id="@+id/recommedationtext2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Olivia Rodrigo"
-                android:textSize="10dp"
-                android:textColor="@color/white"
-                android:layout_marginStart="112dp"
-                android:layout_marginTop="108dp"/>
-            <ImageView
-                android:id="@+id/recommendation2"
-                android:layout_width="68dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="112dp"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/sample_artist"/>
 
-            <TextView
-                android:id="@+id/recommedationtext3"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Olivia Rodrigo"
-                android:textSize="10dp"
-                android:textColor="@color/white"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="108dp"/>
-            <ImageView
-                android:id="@+id/recommendation3"
-                android:layout_width="68dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="200dp"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/sample_artist"/>
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
-            <TextView
-                android:id="@+id/recommedationtext4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Olivia Rodrigo"
-                android:textSize="10dp"
-                android:textColor="@color/white"
-                android:layout_marginStart="290dp"
-                android:layout_marginTop="108dp"/>
-            <ImageView
-                android:id="@+id/recommendation4"
-                android:layout_width="68dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="290dp"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/sample_artist"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="25dp"
+                    android:layout_margin="10dp">
 
+                    <ImageView
+                        android:id="@+id/recommendation1"
+                        android:layout_width="68dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/sample_artist"/>
+
+                    <TextView
+                        android:id="@+id/recommedationtext1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Olivia Rodrigo"
+                        android:textSize="10dp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="25dp"
+                    android:layout_margin="10dp">
+
+                    <ImageView
+                        android:id="@+id/recommendation2"
+                        android:layout_width="68dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/sample_artist"/>
+
+                    <TextView
+                        android:id="@+id/recommedationtext2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Olivia Rodrigo"
+                        android:textSize="10dp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="25dp"
+                    android:layout_margin="10dp">
+
+                    <ImageView
+                        android:id="@+id/recommendation3"
+                        android:layout_width="68dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/sample_artist"/>
+
+                    <TextView
+                        android:id="@+id/recommedationtext3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Olivia Rodrigo"
+                        android:textSize="10dp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="25dp"
+                    android:layout_margin="10dp">
+
+                    <ImageView
+                        android:id="@+id/recommendation4"
+                        android:layout_width="68dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/sample_artist"/>
+
+                    <TextView
+                        android:id="@+id/recommedationtext4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Olivia Rodrigo"
+                        android:textSize="10dp"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <!-- Repeat the LinearLayout block for each additional recommendation -->
+
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
+
     </GridLayout>
     <LinearLayout
         android:layout_width="match_parent"
