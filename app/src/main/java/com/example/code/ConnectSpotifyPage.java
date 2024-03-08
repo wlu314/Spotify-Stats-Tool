@@ -42,7 +42,7 @@ public class ConnectSpotifyPage extends AppCompatActivity implements SpotifyOaut
         // Once the token is received
         spotifyHandler.fetchUserInformation(accessToken);
         Log.d("ConnectSpotifyPage", "Access token received, starting Statistics activity.");
-        Intent mainMenu = new Intent(this, Statistics.class);
+        Intent mainMenu = new Intent(this, HomeActivity.class);
         startActivity(mainMenu);
         finish();
     }
