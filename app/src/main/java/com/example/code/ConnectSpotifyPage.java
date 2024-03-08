@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.code.SpotifyAPI.SpotifyOauth2Application;
+import com.example.code.ui.HomeActivity;
 
 
 public class ConnectSpotifyPage extends AppCompatActivity implements SpotifyOauth2Application.SpotifyAuthenticationListener{

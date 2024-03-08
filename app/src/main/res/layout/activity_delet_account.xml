@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.ProfileActivity"
+    tools:context=".ui.DeletAccountActivity"
     android:background="@color/background_color"
     android:orientation="vertical">
 
@@ -15,7 +15,7 @@
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Account Setting"
+        android:text="Delete Account"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -38,61 +38,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/accountName"
+        android:id="@+id/delete1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Display Name"
-        android:textSize="24sp"
+        android:text="Are you sure?"
         android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleStats" />
 
     <TextView
-        android:id="@+id/logInInfo"
+        android:id="@+id/delete2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Login Information"
-        android:textSize="24sp"
+        android:text="Please the delete button to continue"
         android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountName" />
-    <TextView
-        android:id="@+id/dark_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Dark Mode"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logInInfo" />
-    <TextView
-        android:id="@+id/profile_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Notification"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dark_mode" />
+        app:layout_constraintTop_toBottomOf="@+id/delete1" />
 
-    <TextView
-        android:id="@+id/account_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/button_delete_account"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="24dp"
-        android:text="Delete Account"
-        android:textSize="24sp"
-        android:textColor="@color/white"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="Delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_notification" />
+        app:layout_constraintTop_toBottomOf="@+id/delete2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

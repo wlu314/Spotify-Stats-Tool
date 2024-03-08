@@ -7,4 +7,8 @@
     <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">21sp</item>
     </style>
+
+    <style name="Button.Red" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@android:color/holo_red_dark</item>
+    </style>
 </resources>
