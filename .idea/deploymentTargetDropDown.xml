@@ -2,6 +2,15 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="HomeActivity">
+        <State />
+      </entry>
+      <entry key="LoginActivity">
+        <State />
+      </entry>
+      <entry key="SplashPage">
+        <State />
+      </entry>
       <entry key="Statistics">
         <State>
           <targetSelectedWithDropDown>
