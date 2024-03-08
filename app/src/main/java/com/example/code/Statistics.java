@@ -8,11 +8,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Statistics extends AppCompatActivity {
 
+    ImageButton profileBotton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,5 +43,11 @@ public class Statistics extends AppCompatActivity {
                 return false;
             }
         });
+
+        profileBotton = (ImageButton) findViewById(R.id.profileBotton);
+        profileBotton.setOnClickListener(view -> {
+            startActivity(new Intent(Statistics.this, ProfileActivity.class));
+                });
     }
+
 }
