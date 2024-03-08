@@ -7,24 +7,23 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Statistics extends AppCompatActivity {
+public class FriendActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistics);
+        setContentView(R.layout.activity_friend);
 
         BottomNavigationView nav_view = findViewById(R.id.nav_view);
-        nav_view.getMenu().findItem(R.id.navigation_stats).setChecked(true);
+        nav_view.getMenu().findItem(R.id.navigation_friend).setChecked(true);
         nav_view.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent intent = null;
-                Activity current = Statistics.this;
+                Activity current = FriendActivity.this;
                 if (item.getItemId() == R.id.navigation_home) {
                     intent = new Intent(current, HomeActivity.class);
                 } else if (item.getItemId() == R.id.navigation_stats) {
