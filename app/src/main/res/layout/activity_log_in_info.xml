@@ -10,6 +10,7 @@
 
     <TextView
         android:id="@+id/titleStats"
+        style="@style/TextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -38,6 +39,7 @@
 
     <TextView
         android:id="@+id/myEmaiil"
+        style="@style/TextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -49,6 +51,7 @@
 
     <TextView
         android:id="@+id/current_password"
+        style="@style/TextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

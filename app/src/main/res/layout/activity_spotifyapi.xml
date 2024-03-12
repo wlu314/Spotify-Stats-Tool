@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ConnectSpotifyPage"
-    style="@style/ScreenBackground">
+    style="@style/ScreenBackground2">
 
     <TextView
         android:id="@+id/textView"
+        style="@style/TextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello!"
@@ -21,6 +22,7 @@
 
     <TextView
         android:id="@+id/subTextView"
+        style="@style/TextColor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -28,7 +30,6 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:text="Create a new account and sign into Spotify to display stats!"
-        android:textColor="@color/text_color"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_color"
+        style="@style/TextColor"
         android:text="Connect with Spotify"
         android:textStyle="bold"
         android:layout_marginTop="90dp"

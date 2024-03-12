@@ -1,21 +1,27 @@
 package com.example.code.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.code.R;
 import com.example.code.SpotifyAPI.SpotifyOauth2Application;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
     private SpotifyOauth2Application spotifyOauth2Application;
@@ -23,11 +29,16 @@ public class HomeActivity extends AppCompatActivity {
     boolean darkmode;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    Button logout;
+    FirebaseUser user;
+    FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //dark mode
         darkmodeSwitch = findViewById(R.id.dark_mode);
         sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
         darkmode = sharedPreferences.getBoolean("darkMode", false);
@@ -51,6 +62,42 @@ public class HomeActivity extends AppCompatActivity {
                 editor.apply();
             }
         });
+
+        //Log out
+        logout = findViewById(R.id.signOutButton);
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(HomeActivity.this, R.style.MyDialogTheme);
+                dialog.setTitle("Log out");
+                dialog.setPositiveButton("Sign Out", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        auth.signOut();
+                        Toast.makeText(HomeActivity.this, "Signed out", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+                dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog = dialog.create();
+                alertDialog.show();
+            }
+        });
+
+
+
+
 
 
         BottomNavigationView nav_view = findViewById(R.id.nav_view);
