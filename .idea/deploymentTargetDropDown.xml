@@ -5,9 +5,6 @@
       <entry key="All Tests">
         <State />
       </entry>
-      <entry key="DeletAccountActivity">
-        <State />
-      </entry>
       <entry key="HomeActivity">
         <State>
           <targetSelectedWithDropDown>
@@ -23,6 +20,9 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-03-12T18:30:29.477276Z" />
         </State>
+      </entry>
+      <entry key="LogInInfoActivity">
+        <State />
       </entry>
       <entry key="LoginActivity">
         <State>
