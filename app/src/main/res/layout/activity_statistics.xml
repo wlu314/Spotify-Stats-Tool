@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.Statistics"
-    android:background="@color/background_color"
+    style="@style/ScreenBackground"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,12 +18,11 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="@color/background_color"/>
+            style="@style/CardBackGround" />
         <TextView
             android:id="@+id/titleStats"
             android:text="Stats"
             android:textStyle="bold"
-            android:textColor="@color/white"
             android:textSize="30dp"
             android:gravity="center"
             android:layout_marginTop="10dp"
@@ -32,16 +31,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="10dp"/>
+            android:layout_marginStart="10dp"
+            style="@style/TextColor"/>
         <ImageButton
             android:id="@+id/profileBotton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ImageChange"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:src="@drawable/profile_botton"
-            android:background="@android:color/transparent"
             android:contentDescription="profile"
             android:onClick="buttonClick"/>
     </LinearLayout>
@@ -55,8 +55,8 @@
             android:id="@+id/dateRange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Past Year"
-            android:textColor="@color/text_color" />
+            style="@style/TextColor"
+            android:text="Past Year"/>
     </LinearLayout>
 
     <GridLayout
@@ -75,7 +75,7 @@
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_margin="10dp"
-            android:backgroundTint="@color/card_color"
+            style="@style/CardBackGround"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp">
 
@@ -84,9 +84,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Weekend"
-                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                style="@style/TextColor"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="15dp"/>
 
@@ -95,8 +95,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="The Weekend was your top artist in the last year"
-                android:textColor="@color/text_color"
                 android:textSize="15sp"
+                style="@style/TextColorSub"
                 android:layout_marginTop="50dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"/>
@@ -111,13 +111,14 @@
             android:layout_margin="10dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
-            android:backgroundTint="@color/card_color">
+            style="@style/CardBackGround"
+            >
             <TextView
                 android:id="@+id/topListenser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Top 0.025%"
-                android:textColor="@color/white"
+                style="@style/TextColor"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"
@@ -128,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="you're in the top 0.015% of listeners in the past year"
-                android:textColor="@color/text_color"
+                style="@style/TextColorSub"
                 android:textSize="15sp"
                 android:layout_marginTop="50dp"
                 android:layout_marginStart="15dp"
@@ -144,17 +145,17 @@
             android:layout_margin="10dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
-            android:backgroundTint="@color/card_color">
+            style="@style/CardBackGround">
 
             <TextView
                 android:id="@+id/adjective"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Joyful"
-                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"
+                style="@style/TextColor"
                 android:layout_marginStart="15dp"/>
 
             <TextView
@@ -162,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="your mood in the past year has been joyful"
-                android:textColor="@color/text_color"
+                style="@style/TextColorSub"
                 android:textSize="15sp"
                 android:layout_marginTop="50dp"
                 android:layout_marginStart="15dp"
@@ -177,13 +178,13 @@
             android:layout_margin="10dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
-            android:backgroundTint="@color/card_color">
+            style="@style/CardBackGround">
             <TextView
                 android:id="@+id/totalHours"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8,690 Hours"
-                android:textColor="@color/white"
+                style="@style/TextColor"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"
@@ -194,7 +195,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8,690 is nearly 300 days! "
-                android:textColor="@color/text_color"
+                style="@style/TextColorSub"
                 android:textSize="15sp"
                 android:layout_marginTop="50dp"
                 android:layout_marginStart="15dp"
@@ -218,7 +219,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/card_color"
+            style="@style/CardBackGround"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp">
 
@@ -228,7 +229,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="12dp"
                 android:text="Top Song"
-                android:textColor="@color/white"
+                style="@style/TextColor"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -238,7 +239,7 @@
                 android:layout_marginStart="215dp"
                 android:layout_marginTop="15dp"
                 android:text="Description"
-                android:textColor="@color/white"
+                style="@style/TextColor"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -249,7 +250,7 @@
                 android:layout_marginTop="39dp"
                 android:paddingEnd="10dp"
                 android:text="Good 4 U has been described as an upbeat song blending rock, pop, punk, and alternative styles."
-                android:textColor="@color/text_color"
+                style="@style/TextColorSub"
                 android:textSize="13dp" />
 
             <ImageView
@@ -267,7 +268,7 @@
                 android:layout_marginStart="98dp"
                 android:layout_marginTop="46dp"
                 android:text="Good 4 U"
-                android:textColor="@color/white"
+                style="@style/TextColorSub"
                 android:textSize="15dp" />
 
             <TextView
@@ -277,7 +278,7 @@
                 android:layout_marginStart="98dp"
                 android:layout_marginTop="63dp"
                 android:text="Sour"
-                android:textColor="@color/text_color"
+                style="@style/TextColorSub"
                 android:textSize="12dp" />
 
             <TextView
@@ -287,7 +288,7 @@
                 android:layout_marginStart="98dp"
                 android:layout_marginTop="78dp"
                 android:text="by Olivia Rodrigo"
-                android:textColor="@color/text_color"
+                style="@style/TextColorSub"
                 android:textSize="10dp"
                 android:textStyle="italic" />
 
@@ -298,7 +299,7 @@
                 android:layout_marginStart="98dp"
                 android:layout_marginTop="95dp"
                 android:text="Play on Spotify Now!"
-                android:textColor="@color/text_color"
+                style="@style/TextColorSub"
                 android:textSize="8dp"
                 android:textStyle="italic" />
 
@@ -321,14 +322,14 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
-            android:backgroundTint="@color/card_color"
+            style="@style/CardBackGround"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Our Recommendation"
-                android:textColor="@color/white"
+                style="@style/TextColor"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_marginTop="5dp"
@@ -360,7 +361,8 @@
                         android:layout_height="wrap_content"
                         android:text="Olivia Rodrigo"
                         android:textSize="10dp"
-                        android:textColor="@color/white"/>
+                        style="@style/TextColorSub"
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -382,7 +384,7 @@
                         android:layout_height="wrap_content"
                         android:text="Olivia Rodrigo"
                         android:textSize="10dp"
-                        android:textColor="@color/white"/>
+                        style="@style/TextColorSub" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -404,7 +406,7 @@
                         android:layout_height="wrap_content"
                         android:text="Olivia Rodrigo"
                         android:textSize="10dp"
-                        android:textColor="@color/white"/>
+                        style="@style/TextColorSub" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -426,7 +428,7 @@
                         android:layout_height="wrap_content"
                         android:text="Olivia Rodrigo"
                         android:textSize="10dp"
-                        android:textColor="@color/white"/>
+                        style="@style/TextColorSub" />
                 </LinearLayout>
 
                 <!-- Repeat the LinearLayout block for each additional recommendation -->

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.FriendActivity"
-    android:background="@color/background_color"
+    style="@style/ScreenBackground"
     android:orientation="vertical">
 
     <TextView
@@ -16,7 +16,6 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Friend"
-        android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

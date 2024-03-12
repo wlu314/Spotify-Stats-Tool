@@ -1,5 +1,9 @@
 package com.example.code;
 
+import static android.app.PendingIntent.getActivity;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
@@ -11,6 +15,7 @@ import com.example.code.ui.HomeActivity;
 
 
 public class ConnectSpotifyPage extends AppCompatActivity implements SpotifyOauth2Application.SpotifyAuthenticationListener{
+    String accessToken;
     private SpotifyOauth2Application spotifyHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,8 @@ public class ConnectSpotifyPage extends AppCompatActivity implements SpotifyOaut
         spotifyHandler = new SpotifyOauth2Application(this, this);
         //Once Button is click, login is initiated
         findViewById(R.id.spotify_login_btn).setOnClickListener(v -> spotifyHandler.initiateLogin());
+
+
     }
 
     /**
@@ -43,6 +50,10 @@ public class ConnectSpotifyPage extends AppCompatActivity implements SpotifyOaut
         // Once the token is received
         spotifyHandler.fetchUserInformation(accessToken);
         Log.d("ConnectSpotifyPage", "Access token received, starting Statistics activity.");
+        //store accessToken
+        String token = accessToken;
+        Context context;
+
         Intent mainMenu = new Intent(this, HomeActivity.class);
         startActivity(mainMenu);
         finish();

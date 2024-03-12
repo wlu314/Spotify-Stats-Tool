@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.example.code.ui.HomeActivity;
 import com.example.code.ui.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,8 +36,10 @@ public class SplashPage extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
             startActivity(new Intent(this, LoginActivity.class));
-            finish(); // Optional: finish the splash activity to prevent returning to it with back button
+        } else {
+            startActivity(new Intent(this, HomeActivity.class));
         }
+        finish();
     }
 
 }

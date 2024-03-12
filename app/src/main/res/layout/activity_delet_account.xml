@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.DeletAccountActivity"
-    android:background="@color/background_color"
+    style="@style/ScreenBackground"
     android:orientation="vertical">
 
     <TextView
@@ -16,7 +16,6 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Delete Account"
-        android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
         app:flow_horizontalAlign="center"
@@ -31,6 +30,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="6dp"
         android:background="@android:color/transparent"
+        style="@style/TextColor"
         android:src="@drawable/baseline_arrow_back_24"
         android:text="Button"
         app:layout_constraintEnd_toStartOf="@+id/titleStats"
@@ -42,7 +42,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Are you sure?"
-        android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +55,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Please the delete button to continue"
-        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

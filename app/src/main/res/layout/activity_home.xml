@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.HomeActivity"
-    android:background="@color/background_color"
+    style="@style/ScreenBackground"
     android:orientation="vertical">
 
 
@@ -17,17 +17,11 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Home"
-        android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -47,4 +41,19 @@
         app:itemTextAppearanceInactive="@style/BottomNavigationView"
         app:menu="@menu/bottom_nav_menu"
         />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/dark_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
+        android:text="Dark Mode  "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/titleStats"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01999998" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
