@@ -88,8 +88,11 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         mDatabase.child("users").child(userId).setValue(user);
     }
 
-    private Object getToken(){
+    private String getToken(){
         //returning as User Object
-        return mDatabase.child("users").child(UID).get().getResult().getValue();
+        User user = (User) mDatabase.child("users").child(UID).get().getResult().getValue();
+        String key = user.token;
+        return key;
     }
+
 }
