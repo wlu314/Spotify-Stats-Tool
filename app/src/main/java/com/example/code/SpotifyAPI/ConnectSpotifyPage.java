@@ -28,7 +28,7 @@ public class ConnectSpotifyPage extends AppCompatActivity{
     }
 
     /**
-     * Allows user to login to get an authorization code after the URI query
+     * Opens browser to allow user to login and get authorization code.
      */
     public void openBrowser() {
         AuthorizationRequest.Builder builder =
@@ -40,7 +40,7 @@ public class ConnectSpotifyPage extends AppCompatActivity{
     }
 
     /**
-     * Process result from openBrowser().
+     * Uri response gets the authorization response which is the access token.
      * @param intent The new intent that was started from the openBrowser() method
      *
      */
@@ -52,9 +52,7 @@ public class ConnectSpotifyPage extends AppCompatActivity{
             AuthorizationResponse response = AuthorizationResponse.fromUri(uri);
             switch(response.getType()) {
                 case TOKEN:
-                    System.out.println("Success! This is the token" + response);
-                    String accessToken = response.getAccessToken();
-                    SpotifyUserInfo.fetchUserProfile(accessToken);
+                    System.out.println("Success! This is the token " + response.getAccessToken());
                     LoginSuccess(response);
                     break;
                 case ERROR:
