@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.code.ConnectSpotifyPage;
+import com.example.code.SpotifyAPI.ConnectSpotifyPage;
 import com.example.code.R;
 import com.example.code.RegisterActivity;
 import com.google.android.gms.tasks.OnCompleteListener;

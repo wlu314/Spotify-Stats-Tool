@@ -60,4 +60,5 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
     implementation("com.google.firebase:firebase-auth:22.3.1")
 
+    implementation("androidx.browser:browser:1.7.0")
 }

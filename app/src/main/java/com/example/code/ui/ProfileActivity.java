@@ -32,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
         account_delete = findViewById(R.id.account_delete);
         account_delete.setOnClickListener(view -> {
-         startActivity(new Intent(ProfileActivity.this, DeletAccountActivity.class));
+         startActivity(new Intent(ProfileActivity.this, DeleteAccountActivity.class));
         });
     }
 }

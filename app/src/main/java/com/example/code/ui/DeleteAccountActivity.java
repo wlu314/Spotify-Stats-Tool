@@ -19,7 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class DeletAccountActivity extends AppCompatActivity {
+public class DeleteAccountActivity extends AppCompatActivity {
     ImageButton go_back_button;
     Button deleteAccountButton;
     ProgressBar deleteAccountPB;
@@ -29,10 +29,10 @@ public class DeletAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delet_account);
+        setContentView(R.layout.activity_delete_account);
         go_back_button = findViewById(R.id.go_back_button);
         go_back_button.setOnClickListener(view -> {
-            startActivity(new Intent(DeletAccountActivity.this, ProfileActivity.class));
+            startActivity(new Intent(DeleteAccountActivity.this, ProfileActivity.class));
         });
 
 
@@ -44,7 +44,7 @@ public class DeletAccountActivity extends AppCompatActivity {
         deleteAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(DeletAccountActivity.this, R.style.MyDialogTheme);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(DeleteAccountActivity.this, R.style.MyDialogTheme);
                 dialog.setTitle("Are you Sure??");
                 dialog.setMessage("Deleting this account will result in completely removing your account from the system and you won't be able to retrive the data");
                 dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
@@ -56,13 +56,13 @@ public class DeletAccountActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 deleteAccountPB.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(DeletAccountActivity.this, "Account Deleted", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(DeletAccountActivity.this, LoginActivity.class);
+                                    Toast.makeText(DeleteAccountActivity.this, "Account Deleted", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(DeleteAccountActivity.this, LoginActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                 } else {
-                                    Toast.makeText(DeletAccountActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(DeleteAccountActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });

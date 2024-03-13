@@ -18,13 +18,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.code.R;
-import com.example.code.SpotifyAPI.SpotifyOauth2Application;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
-    private SpotifyOauth2Application spotifyOauth2Application;
     SwitchCompat darkmodeSwitch;
     boolean darkmode;
     SharedPreferences sharedPreferences;
