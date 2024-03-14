@@ -10,7 +10,6 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.code.R;
-import com.example.code.SpotifyUserProfileActivity;
 import com.example.code.User;
 import com.example.code.ui.Statistics;
 import com.google.firebase.auth.FirebaseAuth;
@@ -89,15 +88,8 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         mDatabase.child("users").child(userId).setValue(user);
     }
 
-    private String getToken(){
+    private Object getToken(){
         //returning as User Object
-        User user = (User) mDatabase.child("users").child(UID).get().getResult().getValue();
-        String key = user.token;
-        return key;
+        return mDatabase.child("users").child(UID).get().getResult().getValue();
     }
-
-
-
-
-
 }
