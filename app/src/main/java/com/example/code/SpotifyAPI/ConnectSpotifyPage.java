@@ -5,16 +5,12 @@ import static android.app.PendingIntent.getActivity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.code.R;
-import com.example.code.User;
+import com.example.code.ui.HomeActivity;
 import com.example.code.ui.Statistics;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
@@ -23,8 +19,7 @@ import com.spotify.sdk.android.auth.AuthorizationResponse;
 public class ConnectSpotifyPage extends AppCompatActivity{
     private static final String CLIENT_ID = "0d33de8c5b634aadbe0250636cd2e0aa";
     private static final String REDIRECT_URI = "spotify-api://redirect/";
-    private DatabaseReference mDatabase;
-    String UID;
+
 
 
     @Override
@@ -32,8 +27,6 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spotifyapi);
         findViewById(R.id.spotify_login_btn).setOnClickListener(v -> openBrowser());
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        UID = FirebaseAuth.getInstance().getUid();
     }
 
     /**
@@ -62,9 +55,6 @@ public class ConnectSpotifyPage extends AppCompatActivity{
             switch(response.getType()) {
                 case TOKEN:
                     System.out.println("Success! This is the token " + response.getAccessToken());
-                    //store to DB , token and UserID
-                    writeNewUser(response.getAccessToken(),UID);
-
                     LoginSuccess(response);
                     break;
                 case ERROR:
@@ -77,19 +67,10 @@ public class ConnectSpotifyPage extends AppCompatActivity{
     }
 
     private void LoginSuccess(AuthorizationResponse response) {
-        Intent mainMenu = new Intent(this, Statistics.class);
-        startActivity(mainMenu);
-        finish();
+        Intent intent = new Intent(this, SpotifyUserProfileActivity.class);
+        intent.putExtra("ACCESS_TOKEN", response.getAccessToken()); // Pass the access token
+        startActivity(intent);
+        finish(); // Close this activity
     }
 
-
-    private void writeNewUser(String token, String userId) {
-        User user = new User(token, userId);
-        mDatabase.child("users").child(userId).setValue(user);
-    }
-
-    private Object getToken(){
-        //returning as User Object
-        return mDatabase.child("users").child(UID).get().getResult().getValue();
-    }
 }
