@@ -1,14 +1,16 @@
 package com.example.code.SpotifyAPI;
 
-import static android.app.PendingIntent.getActivity;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
-import android.view.View;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.code.R;
 import com.example.code.User;
 import com.example.code.ui.Statistics;
@@ -26,6 +28,10 @@ public class ConnectSpotifyPage extends AppCompatActivity{
     private DatabaseReference mDatabase;
     String UID;
 
+    private SharedPreferences.Editor editor;
+    private SharedPreferences msharedPreferences;
+
+    private RequestQueue queue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,9 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         findViewById(R.id.spotify_login_btn).setOnClickListener(v -> openBrowser());
         mDatabase = FirebaseDatabase.getInstance().getReference();
         UID = FirebaseAuth.getInstance().getUid();
+
+        msharedPreferences = this.getSharedPreferences("SPOTIFY", 0);
+        queue = Volley.newRequestQueue(this);
     }
 
     /**
@@ -64,7 +73,10 @@ public class ConnectSpotifyPage extends AppCompatActivity{
                     System.out.println("Success! This is the token " + response.getAccessToken());
                     //store to DB , token and UserID
                     writeNewUser(response.getAccessToken(),UID);
-
+                    // Store access token in shared preferences
+                    editor = getSharedPreferences("SPOTIFY", 0).edit();
+                    editor.putString("token", response.getAccessToken());
+                    editor.apply();
                     LoginSuccess(response);
                     break;
                 case ERROR:
@@ -92,4 +104,15 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         //returning as User Object
         return mDatabase.child("users").child(UID).get().getResult().getValue();
     }
+
+    private void waitForUserInfo() {
+        UserEndpoints userService = new UserEndpoints(queue, msharedPreferences);
+        userService.get(() -> {
+            com.example.code.Models.User user = userService.getUser();
+            editor = getSharedPreferences("SPOTIFY", 0).edit();
+            editor.putString("userid", user.id);
+            editor.commit();
+        });
+    }
+
 }
