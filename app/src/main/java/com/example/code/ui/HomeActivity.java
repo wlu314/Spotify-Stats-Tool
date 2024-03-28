@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.code.R;
+import com.example.code.SpotifyAPI.SpotifyUserProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -91,6 +92,12 @@ public class HomeActivity extends AppCompatActivity {
                 AlertDialog alertDialog = dialog.create();
                 alertDialog.show();
             }
+        });
+
+        Button btnViewSpotifyProfile = findViewById(R.id.btnViewSpotifyProfile);
+        btnViewSpotifyProfile.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, SpotifyUserProfileActivity.class);
+            startActivity(intent);
         });
 
 

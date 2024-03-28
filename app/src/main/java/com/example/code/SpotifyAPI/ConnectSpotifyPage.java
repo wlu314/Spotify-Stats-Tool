@@ -1,18 +1,16 @@
 package com.example.code.SpotifyAPI;
 
+import static android.app.PendingIntent.getActivity;
 
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
-
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.example.code.R;
-import com.example.code.User;
+import com.example.code.ui.HomeActivity;
 import com.example.code.ui.Statistics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,15 +21,11 @@ import com.spotify.sdk.android.auth.AuthorizationResponse;
 
 
 public class ConnectSpotifyPage extends AppCompatActivity{
-    private static final String CLIENT_ID = "0d33de8c5b634aadbe0250636cd2e0aa";
+    private static final String CLIENT_ID = "18361388d1984e72932933a3e37aa877";
     private static final String REDIRECT_URI = "spotify-api://redirect/";
     private DatabaseReference mDatabase;
     String UID;
 
-    private SharedPreferences.Editor editor;
-    private SharedPreferences msharedPreferences;
-
-    private RequestQueue queue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,9 +34,6 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         findViewById(R.id.spotify_login_btn).setOnClickListener(v -> openBrowser());
         mDatabase = FirebaseDatabase.getInstance().getReference();
         UID = FirebaseAuth.getInstance().getUid();
-
-        msharedPreferences = this.getSharedPreferences("SPOTIFY", 0);
-        queue = Volley.newRequestQueue(this);
     }
 
     /**
@@ -73,10 +64,6 @@ public class ConnectSpotifyPage extends AppCompatActivity{
                     System.out.println("Success! This is the token " + response.getAccessToken());
                     //store to DB , token and UserID
                     writeNewUser(response.getAccessToken(),UID);
-                    // Store access token in shared preferences
-                    editor = getSharedPreferences("SPOTIFY", 0).edit();
-                    editor.putString("token", response.getAccessToken());
-                    editor.apply();
                     LoginSuccess(response);
                     break;
                 case ERROR:
@@ -89,11 +76,11 @@ public class ConnectSpotifyPage extends AppCompatActivity{
     }
 
     private void LoginSuccess(AuthorizationResponse response) {
-        Intent mainMenu = new Intent(this, Statistics.class);
-        startActivity(mainMenu);
-        finish();
+        Intent intent = new Intent(this, SpotifyUserProfileActivity.class);
+        intent.putExtra("ACCESS_TOKEN", response.getAccessToken()); // Pass the access token
+        startActivity(intent);
+        finish(); // Close this activity
     }
-
 
     private void writeNewUser(String token, String userId) {
         User user = new User(token, userId);
@@ -104,15 +91,4 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         //returning as User Object
         return mDatabase.child("users").child(UID).get().getResult().getValue();
     }
-
-    private void waitForUserInfo() {
-        UserEndpoints userService = new UserEndpoints(queue, msharedPreferences);
-        userService.get(() -> {
-            com.example.code.Models.User user = userService.getUser();
-            editor = getSharedPreferences("SPOTIFY", 0).edit();
-            editor.putString("userid", user.id);
-            editor.commit();
-        });
-    }
-
 }
