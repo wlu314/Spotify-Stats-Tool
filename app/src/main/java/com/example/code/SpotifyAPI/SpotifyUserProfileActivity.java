@@ -36,7 +36,6 @@ public class SpotifyUserProfileActivity extends AppCompatActivity {
             System.out.println("request made");
 
 
-
             try (Response response = client.newCall(request).execute()) {
                 System.out.println( "Response code: " + response.code() + " - Message: " + response.message());
                 if (!response.isSuccessful()) {
