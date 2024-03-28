@@ -22,7 +22,7 @@ import com.spotify.sdk.android.auth.AuthorizationResponse;
 
 
 public class ConnectSpotifyPage extends AppCompatActivity{
-    private static final String CLIENT_ID = "0d33de8c5b634aadbe0250636cd2e0aa";
+    private static final String CLIENT_ID = "18361388d1984e72932933a3e37aa877";
     private static final String REDIRECT_URI = "spotify-api://redirect/";
     private DatabaseReference mDatabase;
     String UID;
@@ -64,6 +64,7 @@ public class ConnectSpotifyPage extends AppCompatActivity{
                 case TOKEN:
                     System.out.println("Success! This is the token " + response.getAccessToken());
                     //store to DB , token and UserID
+                    resetUser(UID);
                     writeNewUser(response.getAccessToken(),UID);
                     LoginSuccess(response);
                     break;
@@ -81,6 +82,9 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         intent.putExtra("ACCESS_TOKEN", response.getAccessToken()); // Pass the access token
         startActivity(intent);
         finish(); // Close this activity
+    }
+    private void resetUser(String userId) {
+        mDatabase.child("users").child(userId).removeValue();
     }
 
     private void writeNewUser(String token, String userId) {

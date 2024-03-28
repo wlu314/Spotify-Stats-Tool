@@ -41,8 +41,10 @@
         android:id="@+id/user_profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="47dp"
-        android:src="@drawable/sample_artist" />
+        android:src="@drawable/sample_artist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleStats" />
         android:text="profile_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
