@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.code.R;
+import com.example.code.User;
 import com.example.code.ui.HomeActivity;
 import com.example.code.ui.Statistics;
 import com.google.firebase.auth.FirebaseAuth;
