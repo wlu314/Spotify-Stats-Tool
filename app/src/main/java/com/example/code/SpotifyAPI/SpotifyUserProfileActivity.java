@@ -35,7 +35,6 @@ public class SpotifyUserProfileActivity extends AppCompatActivity {
                     .build();
             System.out.println("request made");
 
-
             try (Response response = client.newCall(request).execute()) {
                 System.out.println( "Response code: " + response.code() + " - Message: " + response.message());
                 if (!response.isSuccessful()) {
@@ -46,13 +45,13 @@ public class SpotifyUserProfileActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(jsonData);
 
                 String displayName = jsonObject.optString("display_name");
-                System.out.println("name");
+                System.out.println("name"+displayName);
                 String email = jsonObject.optString("email");
-                System.out.println("email");
+                System.out.println("email"+email);
                 String id = jsonObject.optString("id");
-                System.out.println("id");
+                System.out.println("id"+id);
                 String country = jsonObject.optString("country");
-                System.out.println("country");
+                System.out.println("country"+country);
                 String imageUrl = jsonObject.getJSONArray("images").getJSONObject(0).getString("url"); // Assuming user has at least one image
                 runOnUiThread(() -> {
                     TextView displayNameView = findViewById(R.id.user_display_name);

@@ -17,7 +17,7 @@ import com.spotify.sdk.android.auth.AuthorizationResponse;
 
 
 public class ConnectSpotifyPage extends AppCompatActivity{
-    private static final String CLIENT_ID = "0d33de8c5b634aadbe0250636cd2e0aa";
+    private static final String CLIENT_ID = "5de169cf540a4cd5aea89d26639f2cf0";
     private static final String REDIRECT_URI = "spotify-api://redirect/";
 
 
@@ -35,7 +35,7 @@ public class ConnectSpotifyPage extends AppCompatActivity{
     public void openBrowser() {
         AuthorizationRequest.Builder builder =
                 new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
-        builder.setScopes(new String[] {"streaming"});
+        builder.setScopes(new String[] {"user-read-email", "user-read-private","streaming"});
         builder.setShowDialog(true);
         AuthorizationRequest request = builder.build();
         AuthorizationClient.openLoginInBrowser(this, request);

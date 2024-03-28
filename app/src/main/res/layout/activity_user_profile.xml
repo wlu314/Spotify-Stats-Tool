@@ -8,7 +8,7 @@
         android:id="@+id/user_profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/profile_botton" />
+        android:src="@drawable/sample_artist" />
 
     <TextView
         android:id="@+id/user_display_name"
