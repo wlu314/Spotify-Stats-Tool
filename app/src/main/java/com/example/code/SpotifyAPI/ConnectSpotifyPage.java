@@ -5,6 +5,8 @@ import static android.app.PendingIntent.getActivity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,8 +66,8 @@ public class ConnectSpotifyPage extends AppCompatActivity{
                 case TOKEN:
                     System.out.println("Success! This is the token " + response.getAccessToken());
                     //store to DB , token and UserID
-                    resetUser(UID);
-                    writeNewUser(response.getAccessToken(),UID);
+                    resetUser();
+                    writeNewUser(response.getAccessToken());
                     LoginSuccess(response);
                     break;
                 case ERROR:
@@ -83,17 +85,13 @@ public class ConnectSpotifyPage extends AppCompatActivity{
         startActivity(intent);
         finish(); // Close this activity
     }
-    private void resetUser(String userId) {
-        mDatabase.child("users").child(userId).removeValue();
+    private void resetUser() {
+        mDatabase.child("users").child(UID).child("token").removeValue();
     }
 
-    private void writeNewUser(String token, String userId) {
-        User user = new User(token, userId);
-        mDatabase.child("users").child(userId).setValue(user);
+    private void writeNewUser(String token) {
+        User user = new User(token, UID);
+        mDatabase.child("users").child(UID).setValue(user);
     }
 
-    private Object getToken(){
-        //returning as User Object
-        return mDatabase.child("users").child(UID).get().getResult().getValue();
-    }
 }
