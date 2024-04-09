@@ -12,6 +12,18 @@
     <color name="darker_black">#14161d</color>
     <color name="emerald">#028A0F</color>
     <color name="grayGunpowder">#353839</color>
+    <color name="warpper_main">#F0E4D4</color>
+    <color name="warpper_main2">#F9D9CA</color>
+    <color name="warpper_sub">#D18063</color>
+    <color name="warpper_sub2">#917B56</color>
+    <color name="warpper_font1">#440BD4</color>
+    <color name="warpper_font2">#FF2079</color>\
+    <color name="warpper_font3">#FFFF66</color>
+
+
+
+
+
 
 
 </resources>

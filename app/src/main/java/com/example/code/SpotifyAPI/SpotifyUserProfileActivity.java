@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,9 +67,33 @@ public class SpotifyUserProfileActivity extends AppCompatActivity {
                     String accessToken = task.getResult().getValue().toString();
                     System.out.println("Access token obtained!" + accessToken);
                     fetchUserProfile(accessToken);
+                    getWrapper(accessToken);
                 }
             }
         });
+    }
+
+    private void getWrapper(String accessToken) {
+        System.out.println("getting Wrapper");
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n")
+                .addHeader("Authorization", "Bearer " + accessToken)
+                .build();
+        System.out.println("request made");
+        System.out.println(request);
+        try (Response response = client.newCall(request).execute()) {
+            System.out.println("Response code: " + response.code() + " - Message: " + response.message());
+            if (!response.isSuccessful()) {
+                Log.d("Wrapper", "Request failed: " + response.body().string());
+                return;
+            }
+            String jsonData = response.body().string();
+            System.out.println(jsonData);
+            JSONObject jsonObject = new JSONObject(jsonData);
+        } catch (Exception e) {
+            Log.e("Wrapper", "Error ", e);
+        }
     }
 
     private void fetchUserProfile(String accessToken) {

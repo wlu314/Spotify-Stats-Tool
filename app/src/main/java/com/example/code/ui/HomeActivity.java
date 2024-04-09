@@ -14,6 +14,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -31,6 +34,9 @@ public class HomeActivity extends AppCompatActivity {
     Button logout;
     FirebaseUser user;
     FirebaseAuth auth;
+    String[] item = {"2024","2023","2022"};
+    AutoCompleteTextView autoCompleteTextView;
+    ArrayAdapter<String> adapterItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +132,19 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+
+        //drop down
+        autoCompleteTextView = findViewById(R.id.auto_complete_txt);
+        adapterItems = new ArrayAdapter<String>(this, R.layout.drop_down_list,item);
+        autoCompleteTextView.setAdapter(adapterItems);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                Toast.makeText(HomeActivity.this, "Item: " + item, Toast.LENGTH_SHORT).show();
             }
         });
     }
