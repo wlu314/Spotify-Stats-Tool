@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.code.R;
+import com.example.code.SpotifyAPI.SpotifyTopItemsActivity;
 import com.example.code.SpotifyAPI.SpotifyUserProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     String[] item = {"2024","2023","2022"};
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
+    Button btnViewSpotifyProfile, btntopitem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +102,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Button btnViewSpotifyProfile = findViewById(R.id.btnViewSpotifyProfile);
+        btnViewSpotifyProfile = findViewById(R.id.btnViewSpotifyProfile);
         btnViewSpotifyProfile.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, SpotifyUserProfileActivity.class);
+            startActivity(intent);
+        });
+
+        btntopitem = findViewById(R.id.btn_top_item);
+        btntopitem.setOnClickListener(view -> {
+            Intent intent = new Intent(HomeActivity.this, SpotifyTopItemsActivity.class);
             startActivity(intent);
         });
 

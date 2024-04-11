@@ -42,8 +42,8 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
-        go_back_button = findViewById(R.id.go_back_button);
+        setContentView(R.layout.activity_top_items_activity);
+        go_back_button = findViewById(R.id.go_back_button1);
         go_back_button.setOnClickListener(view -> {
             startActivity(new Intent(this, HomeActivity.class));
         });

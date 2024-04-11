@@ -78,8 +78,21 @@
 
         android:textColor="@color/emerald"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.209"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleStats" />
+
+    <Button
+        android:id="@+id/btn_top_item"
+        style="@style/CardBackGround"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="View Top Item"
+
+        android:textColor="@color/emerald"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnViewSpotifyProfile"
         app:layout_constraintTop_toBottomOf="@id/titleStats" />
 
     <ScrollView
@@ -178,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:textSize="22dp"
-                        android:text="Your 2022 in numbers"/>
+                        android:text="Your 2024 in numbers"/>
                     <TextView
                         android:id="@+id/wrap1_1"
                         android:layout_gravity="center"

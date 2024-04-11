@@ -20,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
         boolean playerOneActive;
-r
+
         private TextView playerOneScore, playerTwoScore, playerStatus;
 
         private Button[] buttons = new Button[9];
