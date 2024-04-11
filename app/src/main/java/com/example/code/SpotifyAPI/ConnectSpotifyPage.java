@@ -43,7 +43,8 @@ public class ConnectSpotifyPage extends AppCompatActivity{
     public void openBrowser() {
         AuthorizationRequest.Builder builder =
                 new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
-        builder.setScopes(new String[] {"user-read-email", "user-read-private","streaming"});
+        //builder.setScopes(new String[] {"user-read-email", "user-read-private","streaming"});
+        builder.setScopes(new String[] {"user-read-email", "user-read-private","user-top-read","streaming"});
         builder.setShowDialog(true);
         AuthorizationRequest request = builder.build();
         AuthorizationClient.openLoginInBrowser(this, request);
@@ -78,7 +79,7 @@ public class ConnectSpotifyPage extends AppCompatActivity{
     }
 
     private void LoginSuccess(AuthorizationResponse response) {
-        Intent intent = new Intent(this, SpotifyUserProfileActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("ACCESS_TOKEN", response.getAccessToken()); // Pass the access token
         startActivity(intent);
         finish(); // Close this activity

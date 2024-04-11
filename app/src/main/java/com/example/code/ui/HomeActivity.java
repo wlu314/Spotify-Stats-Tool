@@ -102,20 +102,25 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        btnViewSpotifyProfile = findViewById(R.id.btnViewSpotifyProfile);
-        btnViewSpotifyProfile.setOnClickListener(view -> {
-            Intent intent = new Intent(HomeActivity.this, SpotifyUserProfileActivity.class);
-            startActivity(intent);
-        });
 
         btntopitem = findViewById(R.id.btn_top_item);
-        btntopitem.setOnClickListener(view -> {
-            Intent intent = new Intent(HomeActivity.this, SpotifyTopItemsActivity.class);
-            startActivity(intent);
+        btntopitem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, SpotifyTopItemsActivity.class);
+                startActivity(intent);
+            }
         });
 
 
-
+        btnViewSpotifyProfile = findViewById(R.id.btnViewSpotifyProfile);
+        btnViewSpotifyProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, SpotifyUserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 

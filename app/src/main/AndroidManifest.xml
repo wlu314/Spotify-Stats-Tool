@@ -25,6 +25,9 @@
             android:name=".ui.DeleteAccountActivity"
             android:exported="false" />
         <activity
+            android:name=".SpotifyAPI.SpotifyTopItemsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.Notifications"
             android:exported="false" />
         <activity
