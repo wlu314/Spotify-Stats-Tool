@@ -1,56 +1,83 @@
 package com.example.code;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import android.util.Log;  // Ensure to import Log for Android debugging
 
 public class GPTAPI {
-    public static String chatGPT(String prompt) {
-        String url = "https://api.openai.com/v1/chat/completions";
-        String apiKey = "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";
-        String model = "gpt-3.5-turbo";
+    private static final String API_KEY = "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\n"; // Replace with your actual API key and ensure it's kept secure
+    private static final String API_URL = "https://api.openai.com/v1/chat/completions";
 
-        try {
-            URL obj = new URL(url);
-            HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Authorization", "Bearer " + apiKey);
-            connection.setRequestProperty("Content-Type", "application/json");
+    public interface Callback {
+        void onSuccess(String response);
+        void onError(Exception error);
+    }
 
-            //Request body
-            String body = "{\"model\": \"" + model + "\", \"messages\": [{\"role\": \"user\", \"content\": \"" + prompt + "\"}]}";
-            connection.setDoOutput(true);
-            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-            writer.write(body);
-            writer.flush();
-            writer.close();
+    public static void chatGPT(String prompt, Callback callback) {
+        new Thread(() -> {
+            HttpURLConnection connection = null;
+            try {
+                URL url = new URL(API_URL);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setRequestProperty("Content-Type", "application/json");
+                connection.setRequestProperty("Authorization", "Bearer " + API_KEY);
 
-            //Response from GPT
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            StringBuffer response = new StringBuffer();
-            while((line = br.readLine()) != null) {
-                response.append(line);
+                // Prepare the JSON body with the messages array
+                JsonObject jsonBody = new JsonObject();
+                jsonBody.addProperty("model", "gpt-3.5-turbo");
+
+                JsonArray messages = new JsonArray();
+                JsonObject firstMessage = new JsonObject();
+                firstMessage.addProperty("role", "user");
+                firstMessage.addProperty("content", prompt);
+                messages.add(firstMessage);
+
+                jsonBody.add("messages", messages); // Include the messages array
+                jsonBody.addProperty("max_tokens", 100);
+
+                // Convert the JSON body to string and send the request
+                try (OutputStream os = connection.getOutputStream()) {
+                    byte[] input = jsonBody.toString().getBytes(StandardCharsets.UTF_8);
+                    os.write(input, 0, input.length);
+                }
+
+                // Handle the response
+                int responseCode = connection.getResponseCode();
+                StringBuilder response = new StringBuilder();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
+                        String responseLine;
+                        while ((responseLine = br.readLine()) != null) {
+                            response.append(responseLine.trim());
+                        }
+                    }
+                    callback.onSuccess(response.toString());
+                } else {
+                    // Handle non-OK responses and read the error stream
+                    try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream(), StandardCharsets.UTF_8))) {
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            response.append(line.trim());
+                        }
+                    }
+                    callback.onError(new Exception("Failed: HTTP error code: " + responseCode + " - " + response.toString()));
+                }
+            } catch (Exception e) {
+                Log.e("API Request Error", "Error during API request", e);
+                callback.onError(e);
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
             }
-            br.close();
-            return JSONtoString(response.toString());
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        }).start();
     }
-    public static String JSONtoString(String response) {
-        int start = response.indexOf("content")+ 11;
-
-        int end = response.indexOf("\"", start);
-
-        return response.substring(start, end);
-    }
-
-    //example request
-    // chatGPT("What is the user mood based on the following songs: " "Array of songs");
-    // output: Joyful
 }
-
