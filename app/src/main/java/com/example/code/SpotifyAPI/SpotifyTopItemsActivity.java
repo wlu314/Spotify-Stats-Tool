@@ -120,6 +120,7 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                             mainView = findViewById(R.id.imageView);
                             Glide.with(this).load(imageUrl).into(mainView);
                             //artistsContainer.addView(artistImageView);
+                            //here
                             artistsContainer.addView(artistView);
                         }
                     } catch (Exception e) {
