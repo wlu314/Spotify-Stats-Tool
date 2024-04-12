@@ -94,14 +94,26 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     try {
                         LinearLayout artistsContainer = findViewById(R.id.artists_container);
-                        artistsContainer.removeAllViews();
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject artist = items.getJSONObject(i);
                             String artistName = artist.getString("name");
+
+                            JSONArray images = artist.getJSONArray("images");
+                            String imageUrl = (images.length() > 0) ? images.getJSONObject(0).getString("url") : null;
+
                             TextView artistView = new TextView(SpotifyTopItemsActivity.this);
                             artistView.setText(artistName);
                             artistView.setTextSize(16);
                             artistView.setPadding(10, 10, 10, 10);
+
+                            ImageView artistImageView = new ImageView(SpotifyTopItemsActivity.this);
+                            if (imageUrl != null) {
+                                Glide.with(SpotifyTopItemsActivity.this)
+                                        .load(imageUrl)
+                                        .into(artistImageView);
+                            }
+
+                            artistsContainer.addView(artistImageView);
                             artistsContainer.addView(artistView);
                         }
                     } catch (Exception e) {
@@ -128,8 +140,10 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject track = items.getJSONObject(i);
                             String trackName = track.getString("name");
+                            String trackURI = track.getString("uri"); // Extracting the URI
+
                             TextView trackView = new TextView(SpotifyTopItemsActivity.this);
-                            trackView.setText(trackName);
+                            trackView.setText("Name: " + trackName + "\nURI: " + trackURI);
                             trackView.setTextSize(16);
                             trackView.setPadding(10, 10, 10, 10);
                             tracksContainer.addView(trackView);
