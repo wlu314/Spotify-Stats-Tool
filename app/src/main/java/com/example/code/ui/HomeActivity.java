@@ -12,20 +12,37 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.code.R;
 import com.example.code.SpotifyAPI.SpotifyTopItemsActivity;
 import com.example.code.SpotifyAPI.SpotifyUserProfileActivity;
+import com.example.code.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity {
     SwitchCompat darkmodeSwitch;
@@ -39,6 +56,10 @@ public class HomeActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
     Button btnViewSpotifyProfile, btntopitem;
+    private DatabaseReference mDatabase;
+    String UID;
+    String token;
+    HashMap<String, String> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +181,64 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this, "Item: " + item, Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        UID = FirebaseAuth.getInstance().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        map = new HashMap<>();
+        mDatabase.child("users").child(UID).child("token").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()){
+                    Log.e("firebase", "Error getting data", task.getException());
+                } else {
+                    String accessToken = task.getResult().getValue().toString();
+                    System.out.println("Access token obtained!" + accessToken);
+                    audioAnalysis(accessToken);
+                }
+            }
+        });
+
+
+
+    }
+
+
+
+    private void audioAnalysis(String accessToken) {
+        new Thread(() -> {
+            OkHttpClient client = new OkHttpClient();
+            Request requestRencetTrack = new Request.Builder()
+                    .url("https://api.spotify.com/v1/me/player/recently-played?after=1672549200")
+                    .addHeader("Authorization", "Bearer " + accessToken)
+                    .build();
+
+            System.out.println(" top artist request made");
+            try (Response response = client.newCall(requestRencetTrack).execute()) {
+                if (!response.isSuccessful()) {
+                    Log.e("SpotifyAPI", "Failed to fetch requestRencetTrack: " + response);
+                    return;
+                }
+                String jsonData = response.body().string();
+                JSONObject jsonObject = new JSONObject(jsonData);
+                JSONArray items = jsonObject.getJSONArray("total_tracks");
+                System.out.println("Items got: "+ items);
+
+                runOnUiThread(() -> {
+                    try {
+                        TextView totalTrack = findViewById(R.id.wrap1_3);
+                        if (items.length() > 0) {
+                            JSONObject first = items.getJSONObject(0);
+                            totalTrack.setText(first.getString("total_tracks"));
+                        }
+                    } catch (Exception e) {
+                        Log.e("SpotifyAPI", "Error parsing top artists", e);
+                    }
+                });
+            } catch (Exception e) {
+                Log.e("SpotifyAPI", "Error fetching top artists", e);
+            }
+        }).start();
     }
 
 }

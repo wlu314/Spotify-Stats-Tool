@@ -1,6 +1,7 @@
 package com.example.code.SpotifyAPI;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URI;
 import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
@@ -39,6 +41,7 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
     String token;
     HashMap<String, String> map;
     User user;
+    ImageView mainView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,12 +112,14 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
 
                             ImageView artistImageView = new ImageView(SpotifyTopItemsActivity.this);
                             if (imageUrl != null) {
+
                                 Glide.with(SpotifyTopItemsActivity.this)
                                         .load(imageUrl)
                                         .into(artistImageView);
                             }
-
-                            artistsContainer.addView(artistImageView);
+                            mainView = findViewById(R.id.imageView);
+                            Glide.with(this).load(imageUrl).into(mainView);
+                            //artistsContainer.addView(artistImageView);
                             artistsContainer.addView(artistView);
                         }
                     } catch (Exception e) {
@@ -144,7 +149,8 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                             String trackURI = track.getString("uri"); // Extracting the URI
 
                             TextView trackView = new TextView(SpotifyTopItemsActivity.this);
-                            trackView.setText("Name: " + trackName + "\nURI: " + trackURI);
+                            //trackView.setText("Name: " + trackName + "\nURI: " + trackURI);
+                            trackView.setText(trackName);
                             trackView.setTextSize(16);
                             trackView.setPadding(10, 10, 10, 10);
                             tracksContainer.addView(trackView);
