@@ -97,7 +97,7 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject artist = items.getJSONObject(i);
                             String artistName = artist.getString("name");
-                            System.out.println("tests");
+                            System.out.println("testss");
 
                             JSONArray images = artist.getJSONArray("images");
                             String imageUrl = (images.length() > 0) ? images.getJSONObject(0).getString("url") : null;
