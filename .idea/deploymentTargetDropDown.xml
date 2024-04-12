@@ -5,13 +5,7 @@
       <entry key="GameActivity">
         <State />
       </entry>
-      <entry key="LoginActivity">
-        <State />
-      </entry>
-      <entry key="SpotifyUserProfileActivity">
-        <State />
-      </entry>
-      <entry key="Statistics">
+      <entry key="app">
         <State />
       </entry>
     </value>

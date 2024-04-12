@@ -73,6 +73,12 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                     .build();
 
             System.out.println(" top artist request made");
+
+            Request requestTracks = new Request.Builder()
+                    .url("https://api.spotify.com/v1/me/top/tracks?limit=10")
+                    .addHeader("Authorization", "Bearer " + accessToken)
+                    .build();
+
             try (Response response = client.newCall(requestArtists).execute()) {
                 if (!response.isSuccessful()) {
                     Log.e("SpotifyAPI", "Failed to fetch top artists: " + response);
@@ -82,6 +88,7 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(jsonData);
                 JSONArray items = jsonObject.getJSONArray("items");
                 System.out.println("Items got: "+ items);
+                System.out.println("test");
 
                 runOnUiThread(() -> {
                     try {
@@ -97,6 +104,33 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
             } catch (Exception e) {
                 Log.e("SpotifyAPI", "Error fetching top artists", e);
             }
+
+            try (Response response = client.newCall(requestTracks).execute()) {
+                if (!response.isSuccessful()) {
+                    Log.e("SpotifyAPI", "Failed to fetch top tracks: " + response);
+                    return;
+                }
+                String jsonData = response.body().string();
+                JSONObject jsonObject = new JSONObject(jsonData);
+                JSONArray items = jsonObject.getJSONArray("items");
+
+                runOnUiThread(() -> {
+                    try {
+                        TextView topTrackNameView = findViewById(R.id.top_track_name);
+                        // Make sure to have this TextView in your layout
+                        if (items.length() > 0) {
+                            JSONObject firstTrack = items.getJSONObject(0);
+                            topTrackNameView.setText(firstTrack.getString("name"));
+                        }
+                    } catch (Exception e) {
+                        Log.e("SpotifyAPI", "Error parsing top tracks", e);
+                    }
+                });
+            } catch (Exception e) {
+                Log.e("SpotifyAPI", "Error fetching top tracks", e);
+            }
         }).start();
     }
+
+
 }
