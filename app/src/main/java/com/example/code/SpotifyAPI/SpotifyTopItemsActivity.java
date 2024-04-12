@@ -1,9 +1,11 @@
 package com.example.code.SpotifyAPI;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -42,6 +44,8 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
     HashMap<String, String> map;
     User user;
     ImageView mainView;
+    SharedPreferences prefs;
+    JSONArray jsonArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
         UID = FirebaseAuth.getInstance().getUid();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         map = new HashMap<>();
+        jsonArray = new JSONArray();
         mDatabase.child("users").child(UID).child("token").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -100,6 +105,7 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject artist = items.getJSONObject(i);
                             String artistName = artist.getString("name");
+                            jsonArray.put(artistName);
                             System.out.println("testss");
 
                             JSONArray images = artist.getJSONArray("images");
@@ -123,6 +129,10 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
                             //here
                             artistsContainer.addView(artistView);
                         }
+                        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("SONG_LIST",jsonArray.toString());
+                        editor.apply();
                     } catch (Exception e) {
                         Log.e("SpotifyAPI", "Error parsing top artists", e);
                     }

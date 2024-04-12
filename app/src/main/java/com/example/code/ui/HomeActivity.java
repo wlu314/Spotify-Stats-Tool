@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.code.R;
 import com.example.code.SpotifyAPI.SpotifyTopItemsActivity;
 import com.example.code.SpotifyAPI.SpotifyUserProfileActivity;
+import com.example.code.StartGame;
 import com.example.code.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -241,4 +242,9 @@ public class HomeActivity extends AppCompatActivity {
         }).start();
     }
 
+    public void method1(View view){
+        // In startGame() method, create an Intent to launch StartGame Activity
+        Intent intent = new Intent(HomeActivity.this, LLMActivity.class);
+        startActivity(intent);
+    }
 }

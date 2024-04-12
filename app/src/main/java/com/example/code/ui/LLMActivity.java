@@ -1,6 +1,11 @@
 package com.example.code.ui;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.code.GPTAPI;
@@ -10,6 +15,9 @@ import org.json.JSONObject;
 import org.json.JSONException;
 
 public class LLMActivity extends AppCompatActivity {
+    SharedPreferences prefs;
+    JSONArray jsonArray;
+    ImageButton go_back_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,14 +25,16 @@ public class LLMActivity extends AppCompatActivity {
         setContentView(R.layout.activity_llm);
 
         TextView resultTextView = findViewById(R.id.result_text_view);
-        String[] songs1 = {"Blinding Lights - The Weeknd", "Good 4 U - Olivia Rodrigo", "Levitating - Dua Lipa"};
-        String[] songs2 = {"Shape of You - Ed Sheeran", "Someone Like You - Adele", "Uptown Funk - Mark Ronson ft. Bruno Mars"};
-        String[] songs3 = {"Rolling in the Deep - Adele", "Firework - Katy Perry", "Happy - Pharrell Williams"};
-        String[] songs4 = {"Sorry - Justin Bieber", "Hello - Adele", "Roar - Katy Perry"};
-        String[] songs5 = {"Smells Like Teen Spirit - Nirvana", "Enter Sandman - Metallica", "Creep - Radiohead"};
+        go_back_button = findViewById(R.id.go_back_button);
+        go_back_button.setOnClickListener(view -> {
+            startActivity(new Intent(LLMActivity.this, HomeActivity.class));
+        });
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String songs = prefs.getString("SONG_LIST","0");
 
         String prompt = "Based on someone's Spotify Wrapped featuring songs such as " +
-                String.join(", ", songs1) + ", in less than 400 characters, describe how their musical taste might reflect their way of thinking, acting, or dressing.";
+                String.join(", ", songs) + ", in less than 400 characters, describe how their musical taste might reflect their way of thinking, acting, or dressing.";
 
 
         GPTAPI.chatGPT(prompt, new GPTAPI.Callback() {
