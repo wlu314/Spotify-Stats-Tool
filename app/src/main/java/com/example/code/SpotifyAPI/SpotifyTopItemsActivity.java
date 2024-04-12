@@ -93,10 +93,16 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     try {
-                        TextView topArtistNameView = findViewById(R.id.top_artist_name);
-                        if (items.length() > 0) {
-                            JSONObject firstArtist = items.getJSONObject(0);
-                            topArtistNameView.setText(firstArtist.getString("name"));
+                        LinearLayout artistsContainer = findViewById(R.id.artists_container);
+                        artistsContainer.removeAllViews();
+                        for (int i = 0; i < items.length(); i++) {
+                            JSONObject artist = items.getJSONObject(i);
+                            String artistName = artist.getString("name");
+                            TextView artistView = new TextView(SpotifyTopItemsActivity.this);
+                            artistView.setText(artistName);
+                            artistView.setTextSize(16);
+                            artistView.setPadding(10, 10, 10, 10);
+                            artistsContainer.addView(artistView);
                         }
                     } catch (Exception e) {
                         Log.e("SpotifyAPI", "Error parsing top artists", e);
