@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -116,11 +117,16 @@ public class SpotifyTopItemsActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     try {
-                        TextView topTrackNameView = findViewById(R.id.top_track_name);
-                        // Make sure to have this TextView in your layout
-                        if (items.length() > 0) {
-                            JSONObject firstTrack = items.getJSONObject(0);
-                            topTrackNameView.setText(firstTrack.getString("name"));
+                        LinearLayout tracksContainer = findViewById(R.id.tracks_container);
+                        tracksContainer.removeAllViews();
+                        for (int i = 0; i < items.length(); i++) {
+                            JSONObject track = items.getJSONObject(i);
+                            String trackName = track.getString("name");
+                            TextView trackView = new TextView(SpotifyTopItemsActivity.this);
+                            trackView.setText(trackName);
+                            trackView.setTextSize(16);
+                            trackView.setPadding(10, 10, 10, 10);
+                            tracksContainer.addView(trackView);
                         }
                     } catch (Exception e) {
                         Log.e("SpotifyAPI", "Error parsing top tracks", e);
