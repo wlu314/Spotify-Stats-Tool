@@ -7,3 +7,5 @@ This app is designed to provide users with a personalized and interactive experi
 4. **Customizable Experience**: The app allows for the integration of an LLM API to dynamically describe the lifestyle and preferences associated with a user's music taste, with an option to compare it with a friend's during a Duo-Wrapped.
 5. **Flexible Time Span for Summaries**: Users can control the time span of their Wrapped summary, choosing from options like 1 week, 1 month, 1 year, or all time.
 6. **User Preferences**: A settings page offers customization options such as toggling dark mode and changing notification preferences.
+7. 
+<img width="644" alt="Screenshot 2024-08-22 at 2 20 22 PM" src="https://github.com/user-attachments/assets/dac6831f-2f0c-4178-b824-29b41a9ff58a">
