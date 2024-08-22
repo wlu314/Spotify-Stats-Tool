@@ -9,4 +9,4 @@ This app is designed to provide users with a personalized and interactive experi
 6. **User Preferences**: A settings page offers customization options such as toggling dark mode and changing notification preferences.
 
 <img width="644" alt="Screenshot 2024-08-22 at 2 20 22 PM" src="https://github.com/user-attachments/assets/dac6831f-2f0c-4178-b824-29b41a9ff58a">
-*All designs and ideation process was developed in Figma.*
+All designs and ideation process was developed in Figma.
