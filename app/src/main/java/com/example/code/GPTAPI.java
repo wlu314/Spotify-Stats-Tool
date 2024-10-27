@@ -11,7 +11,7 @@ import com.google.gson.JsonObject;
 import android.util.Log;  // Ensure to import Log for Android debugging
 
 public class GPTAPI {
-    private static final String API_KEY = "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\n"; // Replace with your actual API key and ensure it's kept secure
+    private static final String API_KEY = "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\n"; // Replace with your actual API key and ensure it's kept secure
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
 
     public interface Callback {
